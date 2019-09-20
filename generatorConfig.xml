@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+
+    <!--修改为自己的mysql连接jar包-->
+    <classPathEntry location="C:\Users\13937\.m2\repository\mysql\mysql-connector-java\8.0.17\mysql-connector-java-8.0.17.jar"/>
+
+    <context id="context1" >
+        <commentGenerator  >
+            <property name="javaFileEncoding" value="UTF-8"/>
+            <property name="suppressAllComments" value="false" />
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!--选择数据库的driverClass与connectionURL-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/test_info?characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=UTC" userId="root" password="zhangjian" >
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!--生成实体类 指定包名 以及生成的地址 （可以自定义地址，但是路径不存在不会自动创建  使用Maven生成在target目录下，会自动创建） -->
+        <javaModelGenerator targetPackage="com.xx.springboot.entity" targetProject="D:\project\springboot\src\main\java" >
+            <property name="enableSubPackages" value="true"/> <!-- 如果true，MBG会根据catalog和schema来生成子包。如果false就会直接用targetPackage属性。默认为false -->
+            <property name="trimStrings" value="true" /> <!-- 当数据库字段使用CHAR时，建议在<javaModelGenerator>中设 -->
+        </javaModelGenerator>
+
+        <!--生成Mapper文件 -->
+        <sqlMapGenerator targetPackage="com.xx.springboot.dao"  targetProject="D:\project\springboot\src\main\java" />
+
+        <!--生成Dao文件 可以配置 type="XMLMAPPER"生成xml的dao实现 -->
+        <javaClientGenerator targetPackage="com.xx.springboot.dao" targetProject="D:\project\springboot\src\main\java" type="XMLMAPPER" />
+
+        <table tableName="user" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false"   selectByExampleQueryId="false"  schema="test_info"/>
+    </context>
+</generatorConfiguration>

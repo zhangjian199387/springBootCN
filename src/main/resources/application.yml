@@ -1,0 +1,30 @@
+
+
+  server:
+      port: 8090
+
+  spring:
+    datasource:
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: zhangjian
+      url: jdbc:mysql://127.0.0.1:3306/test_info?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    jpa:
+      show-sql: true
+      database-platform: org.hibernate.dialect.H2Dialect
+    themeleaf:
+        prefix: /
+        suffix: .html
+    devtools:
+        restart:
+          enabled: true  #设置开启热部署
+        freemarker:
+          cache: false    #页面不加载缓存，修改即时生效
+  debug: true
+  mybatis:
+          type-aliases-package: com.xx.springboot.entity
+          mapperLocations: classpath:sqlMap/*.xml
+
+
+
+

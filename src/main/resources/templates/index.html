@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="/static/js/vue.min.js"></script>
+<body>
+
+<div class="box">
+    <div id="vueDiv">
+    <h2>1、数据双向绑定(v-model,v-html,{{}})：</h2>
+    <label >用户名：</label>
+    <input type="text" id="username" v-model="username" oninput="ss()"/>
+        <h1 >{{ready()}}</h1>
+        <div >1111{{data.da}}</div>
+    <div>双向绑定：{{details()}}</div>
+        <h1>{{sss()}}</h1>
+        <h1>{{data.alexa}}</h1>
+
+    </div>
+
+</div>
+<el-form-item label="temp">
+    <span slot="label">Label for the slot</span>
+    <el-input v-model="formLabelAlign.name"></el-input>
+</el-form-item>
+<!--<div class="box">-->
+<!--    <div id="vueDiv">-->
+
+<!--        <h1> 名称: {{name}}</h1>-->
+
+<!--        <h1>{{details()}}</h1>-->
+
+<!--    </div>-->
+<!--</div>-->
+<script >
+    var data = {
+        username:un,
+        alexa: "10000",
+        al : 1,
+        da:1
+    }
+    var un;
+    function ss(){
+        un = document.getElementById("username").value;
+        alert(un);
+    }
+    var vm = new Vue({
+        el:"#vueDiv",
+        data: data
+
+        ,methods: {
+            ready :function(){
+
+
+
+            },
+            sss:function(){
+
+                return this.username;
+            },
+            details: function () {
+
+                return this.username + "好好学习，天天向上。";
+
+            }
+
+        }
+    });
+    Vue.set( this.data,'da', 'who');
+    vm.$watch('username', function (newValue, oldValue) {
+        // 这个回调将在 vm.kilometers 改变后调用
+        alert("修改前值为: " + oldValue + "，修改后值为: " + newValue);
+    })
+    // var vm = new Vue({
+    //
+    //     el: '#vueDiv',
+    //
+    //     data: {
+    //
+    //         name: "hello! ",
+    //
+    //         alexa: "10000"
+    //
+    //     },
+    //
+    //     methods: {
+    //
+    //         details: function () {
+    //
+    //             return this.name + "好好学习，天天向上。";
+    //
+    //         }
+    //
+    //     }
+    // });
+
+</script>
+</body>
+
+</html>

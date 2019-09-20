@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<meta charset="UTF-8">
+<title>使用 jQuery validate 表单验证</title>
+<script src="js/jquery-1.11.2.min.js"></script>
+<!--    <script src="scripts/jquery.validate.min.js"></script>-->
+<!--    <script src="scripts/messages_zh.min.js"></script>-->
+<!--    <script src="scripts/user/login.js"></script>-->
+
+<body>
+<form id="form1" action="/userLogin">
+    <input type="text" id="userName" class="userName" name="userName"><br>
+    <input type="email" id="email" name="email"><br>
+    <select id="depertmentId" name="departmentId">
+    </select><br>
+    <input type="password" id="password" class="password" name="password"><br>
+    <input type="submit" value="login">
+</form>
+
+</body>
+<script type="text/javascript">
+
+
+    $.ajax({
+        async : false,    //表示请求是否异步处理
+        type : "post",    //请求类型
+        url : "/li",//请求的 URL地址
+        dataType : "json",//返回的数据类型
+        success: function (data) {
+            console.log(data);  //在控制台打印服务器端返回的数据
+            for(var i=0;i<data.length;i++){
+                console.log(data[i].id+" "+data[i].user);
+            }
+            $("select[name='position']").empty();
+            $("select[name='position']").append('<option value="">——请选择——</option>');
+            for(var i=0;i<data.length;i++){
+                var html ='<option value="'+data[i].id+'">';
+                html +=data[i].user + '</option>';
+                $("select[name='position']").append(html);  //将数据显示在html页面
+            }
+        },
+        error:function (data) {
+            alert(data.result);
+        }
+    });
+</script>
+</html>
